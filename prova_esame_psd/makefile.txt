@@ -1,0 +1,20 @@
+main.exe: utile.o data.o evento.o bst_evento.o conferenza.o main.o
+gcc  utile.o data.o evento.o bst_evento.o conferenza.o main.o -o main.exe
+
+utile.o: utile.c utile.h
+gcc -c utile.c
+
+data.o: data.c data.h utile.h
+gcc -c data.c
+
+evento.o: evento.c evento.h utile.h data.h
+gcc -c evento.c
+
+bst_evento.o: bst_evento.c evento.h 
+gcc -c bst_evento.c
+
+conferenza.o: conferenza.c conferenza.h utile.h data.h
+gcc -c conferenza.c
+
+main.o: main.c utile.h conferenza.h
+gcc -c main.c
