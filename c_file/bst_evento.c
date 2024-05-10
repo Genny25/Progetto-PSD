@@ -1,10 +1,10 @@
 // file bst_evento.c
-
+// ciao genny
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "evento.h"
-#include "bst_evento.h"
+#include "bst_evento.h"  
 
 typedef struct eventBstNodeStruct *eventBstNode;
 
