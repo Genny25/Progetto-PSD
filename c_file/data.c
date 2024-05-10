@@ -51,18 +51,19 @@ int controllo_data(Date date)
         printf("Errore");
         return -1;
     }
-    // Validate year, month, and day
+    // controllo per mesi e gionri
     if (date->month < 1 || date->month > 12 || date->day < 1 || date->day > 31)
         return 0;
 
-    // Validate month-day combination
+    // controllo per i mesi di 30 giorni 
     if ((date->month == 4 || date->month == 6 || date->month == 9 || date->month == 11) && date->day > 30)
         return 0;
-
+    
+    // controllo per anno bisestile 
     if (date->month == 2)
     {
         if ((date->year % 4 == 0 && date->year % 100 != 0) || (date->year % 400 == 0))
-        { // Leap year
+        { 
             if (date->day > 29)
                 return 0;
         }
@@ -73,7 +74,7 @@ int controllo_data(Date date)
         }
     }
 
-    // Validate hour, minute, and second
+    // controllo ora e minuti
     if (date->hour < 0 || date->hour > 23 || date->minutes < 0 || date->minutes > 59)
         return 0;
 
