@@ -2,6 +2,9 @@
 
 #include "utile.h"
 #include "bst_evento.h"
+#include "data.h"
+#include "sala.h"
+#include "lista_sala.h"
 
 typedef struct ConferenceStruct *conferenza;
 
