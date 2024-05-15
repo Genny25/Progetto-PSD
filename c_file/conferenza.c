@@ -334,7 +334,7 @@ conferenza leggi_conferenza_da_file(FILE *file)
     pulisci_buffer(file);
 
     // Create a new conference
-    conferenza conf = nuova_conferenza;
+    conferenza conf = nuova_conferenza();
     if (conf == NULL)
     {
         perror("Error creating new conference");
@@ -349,7 +349,7 @@ conferenza leggi_conferenza_da_file(FILE *file)
     if (conf->bst == NULL)
     {
         perror("Error reading events");
-        free_conference(conf);
+        free_conferenza(conf);
         return NULL;
     }
 
