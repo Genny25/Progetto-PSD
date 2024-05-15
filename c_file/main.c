@@ -8,7 +8,7 @@
 int main()
 {
     conferenza conf = nuova_conferenza();
-    int scelta, temp;
+    int scelta;
     do
     {
         printf("\n\n");
