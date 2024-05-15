@@ -2,11 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "utile.h"
-#include "data.h"
-#include "bst_evento.h"
-#include "sala.h"
-#include "lista_sala.h"
+
 #include "conferenza.h"
 
 struct ConferenceStruct
