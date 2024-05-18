@@ -85,6 +85,7 @@ int controllo_data(Date date)
     return 1;
 }
 
+// Funzione utile per confrontare due interi
 int utile_data(int d1, int d2)
 {
     if (d1 < d2)
@@ -98,42 +99,44 @@ int utile_data(int d1, int d2)
     return 1;
 }
 
+// Funzione per confrontare due date
 int confronta_date(Date data1, Date data2)
 {
-    // Compare 'year'
+    // Confronta l'anno
     int result = utile_data(data1->year, data2->year);
     if (result != 0)
     {
         return result;
     }
-    // Compare 'month'
+    // Confronta il mese
     result = utile_data(data1->month, data2->month);
     if (result != 0)
     {
         return result;
     }
-    // Compare 'day'
+    // Confronta il giorno
     result = utile_data(data1->day, data2->day);
     if (result != 0)
     {
         return result;
     }
-    // Compare 'hour'
+    // Confronta l'ora
     result = utile_data(data1->hour, data2->hour);
     if (result != 0)
     {
         return result;
     }
-    // Compare 'minutes'
+    // Confronta i minuti
     return utile_data(data1->minutes, data2->minutes);
 }
 
+// Funzione per leggere una data dall'input dell'utente 
 Date input_data(void)
 {
-    char temp[101] = {0};
-    if (leggi_input(temp, 101))
+    char temp[101] = {0}; // Buffer per memorizzare l'input
+    if (leggi_input(temp, 101)) // Legge l'input 
     {
-        return NULL;
+        return NULL; // Restituisce NULL se la lettura fallisce
     }
 
     int day = 0;
@@ -142,47 +145,55 @@ Date input_data(void)
     int hour = 0;
     int minutes = 0;
 
+    // Analizza l'input per estrarre giorno, mese, anno, ora e minuti
     if (sscanf(temp, "%d/%d/%d %d:%d", &day, &month, &year, &hour, &minutes) != 5)
     {
-        return NULL;
+        return NULL; // restitusce NULL se l'input non è nel formato corretto
     }
 
+    // Crea una nuova data con i valori estratti
     Date date = nuova_data(year, month, day, hour, minutes);
     return date;
 }
 
+// Funzione per stampare una data 
 void stampa_data(Date date)
 {
+    // Stampa la data nel formato giorno/mese/anno, ora:minuti
     printf("%d/%d/%d, %02d:%02d", date->day, date->month, date->year, date->hour, date->minutes);
 }
 
+// Funzione per liberare la memoria allocata per una data 
 void free_date(Date date)
 {
     free(date);
 }
 
+/7 Funzione per salvare una data su file
 void salva_data_su_file(Date data, FILE *file)
 {
     if (data == NULL)
     {
-        perror("Errore");
+        perror("Errore"); // Se il pintatore alla data è NULL, stampa un errore 
         return;
     }
 
     if (file == NULL)
     {
-        perror("Errore");
+        perror("Errore"); // Se il file è NULL; stampa un errore 
         return;
     }
 
+    // Scrive la data nel file nel formato giorno mese anno ora minuti
     fprintf(file, "%d %d %d %d %d\n", data->day, data->month, data->year, data->hour, data->minutes);
 }
 
+// Funzione per leggere una data da un file
 Date leggi_data_da_file(FILE *file)
 {
     if (file == NULL)
     {
-        perror("Errore");
+        perror("Errore"); /7 Se il file è NULL, stampa un errore
         return NULL;
     }
 
@@ -191,15 +202,16 @@ Date leggi_data_da_file(FILE *file)
     int year = 0;
     int hour = 0;
     int minutes = 0;
-
+    // legge i valori della data dal file
     if (fscanf(file, "%d %d %d %d %d", &day, &month, &year, &hour, &minutes) != 5)
     {
-        pulisci_buffer(file);
+        pulisci_buffer(file); // Pulisce il buffer se la lettura fallisce
         return NULL;
     }
 
-    pulisci_buffer(file);
+    pulisci_buffer(file); // Pulisce il buffer
 
+    // Crea una nuova data con i valori letti dal file
     Date data = nuova_data(year, month, day, hour, minutes);
 
     return data;
