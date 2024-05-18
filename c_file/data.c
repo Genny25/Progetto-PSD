@@ -44,7 +44,7 @@ Date nuova_data(int year, int month, int day, int hour, int minutes)
     return date;
 }
 
-/7 Funzione per controllare se una data è valida
+// Funzione per controllare se una data è valida
 int controllo_data(Date date)
 {
     if (date == NULL)
