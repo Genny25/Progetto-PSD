@@ -11,8 +11,7 @@
 void pulisci_buffer(FILE *file)
 {
     int temp;
-    while ((temp = getc(file)) != '\n' && temp != EOF)
-        ;
+    while ((temp = getc(file)) != '\n' && temp != EOF);
 }
 
 // Funzione per leggere una riga da file
@@ -61,7 +60,7 @@ int leggi_intero()
     if ((errno == ERANGE) || (errno != 0 && choice == 0))
     {
         perror("strtol");
-        // // Errore nella conversione della stringa in un intero
+        // Errore nella conversione della stringa in un intero
         return -2;
     }
 
