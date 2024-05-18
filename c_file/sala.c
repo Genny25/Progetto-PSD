@@ -12,96 +12,109 @@ struct StructSala
     char *nome;  // Nome della sala
 };
 
+// Funzione per creare una nuova sala con il nome e l'ID forniti
 sala nuova_sala(char *nome, int id)
 {
+    // Alloca memoria per una nuova struttura sala
     sala s = my_alloc(1, sizeof(*s));
+    // Duplica il nome fornito e assegna l'ID
     s->nome = my_strdup(nome);
     s->id = id;
 
+    // Restituisce la nuova sala creata
     return s;
 }
 
+// Funzione per confrontare due sale
 bool eq_sale(sala s1, sala s2)
 {
+    // Sei i puntatori sono uguali, le sale sono uguali
     if (s1 == s2)
     {
         return true;
     }
+    // Controlla se entrambe le sale non sono NULL e se hanno lo stesso ID
     return s1 != NULL && s2 != NULL && s1->id == s2->id;
 }
 
+// Funzione per inserire i dati di una sala dall'input dell'utente
 sala input_sala(int id)
 {
-
+    // Chiede all'utente di inserire il nome della sala
     printf("Inserisci nome sala [Max 100 caratteri]: ");
-    char nome[102] = {0};
-    if (leggi_input(nome, 102))
+    char nome[102] = {0}; // Buffer per memorizzare l'input
+    if (leggi_input(nome, 102)) // Legge l'input dall'utente
     {
-        return NULL;
+        return NULL; // Restituisce NULL se la lettura fallisce
     }
+    // Crea una nuova sala con il nome inserito e l'ID fornito
     sala s = nuova_sala(nome, id);
     return s;
 }
 
+// Funzione per ottenere il nome di una sala
 char *get_sala_nome(sala s)
 {
-    return s->nome;
+    return s->nome; // Restituisce il nome della sala
 }
 
+// Funzione per ottenere l'ID di una sala
 int get_sala_id(sala s)
 {
-    return s->id;
+    return s->id; // Restituisce l'ID della sala
 }
 
+// Funzione per stampare il nome di una sala
 void stampa_sala(sala s)
 {
-    printf("%s", s->nome);
+    printf("%s", s->nome); // Stampa il nome della sala
 }
 
+// Funzione per liberare la memoria allocata per una sala
 void free_sala(sala s)
 {
-    free(s->nome);
-    free(s);
+    free(s->nome); // Libera la memoria allocata per il nome
+    free(s); // Libera la memoria allocata per la struttura sala
 }
 
-// Function to save a Room structure to a file
+// Funzione per salvare una struttura sala su un file
 void salva_sala_su_file(sala s, FILE *file)
 {
     if (s == NULL || file == NULL)
     {
-        return;
+        return; // Se la sala o il file sono NULL, esce dalla funzione
     }
 
-    // Write Room data to the file
+    // Scrive l'ID e il nome della sala nel file
     fprintf(file, "%d\n", s->id);   // Write room ID
     fprintf(file, "%s\n", s->nome); // Write room name
 }
 
-// Function to read a Room structure from a file
+// Funzione per leggere una struttura sala da un file
 sala leggi_sala_da_file(FILE *file)
 {
     if (file == NULL)
     {
-        return NULL;
+        return NULL; // Se il file è NULL, restituisce NULL
     }
 
-    // Read room ID from the file
+    // L'egge l'ID della sala dal file
     int id;
     if (fscanf(file, "%d", &id) != 1)
     {
-        pulisci_buffer(file); // Clean the file buffer
+        pulisci_buffer(file); // Pulisce il buffer del file se la lettura fallisce 
         return NULL;
     }
 
-    pulisci_buffer(file); // Clean the file buffer
+    pulisci_buffer(file); // Pulisce il buffer del file
 
-    // Read room name from the file
+    // Legge il nome della sala dal file
     char nome[102];
     if (leggi_input_da_file(nome, 102, file) != 0)
     {
-        return NULL;
+        return NULL; // Restituisce NULL se la lettura del nome fallisce 
     }
 
-    // Create and return a new Room structure
+    // Crea e restituisce una nuova sala con i valori letti dal file
     return nuova_sala(nome, id);
 }
