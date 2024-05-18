@@ -4,42 +4,54 @@
 #include <stdlib.h>
 #include "lista_sala.h"
 
+// Definizione della capacità iniziale e del fattore di crescita della lita
 #define INIZIALE_CAPACITA 16
 #define FATTOR_DI_CRESCITA 2
 
+// Struttura ListaSalaStruct che rappresenta una lista di sale
 struct ListaSalaStruct
 {
-    sala *array;
-    int capacita;
-    int dimensione;
+    sala *array;     // Puntatore all'array di sale
+    int capacita;    // Capacità attuale dell'array
+    int dimensione;  // Numero di sale presenti nella lista
 };
 
+// Funzione per aumentare la capacità della lista di sale
 void aumenta_capacita_lista_sala(listaSala lista)
 {
+    // Raddoppia la capacità attuale della lista
     lista->capacita *= FATTOR_DI_CRESCITA;
+    // Rialloca memoria per l'array con la nuova capacità
     lista->array = my_realloc(lista->array, lista->capacita, sizeof(sala));
 }
 
+// Funzione per creare uan nuova lista di sale
 listaSala nuova_lista_sala(void)
 {
+    // Alloca meoria per una nuova struttura listaSale
     listaSala nuova_lista = my_alloc(1, sizeof(*nuova_lista));
+    // Alloca memoria per l'array di sale con la capacità iniziale
     nuova_lista->array = my_alloc(INIZIALE_CAPACITA, sizeof(sala));
     nuova_lista->capacita = INIZIALE_CAPACITA;
     nuova_lista->dimensione = 0;
     return nuova_lista;
 }
 
+// Funzione per verificare se la lista di sale è vuota
 bool lista_sala_vuota(listaSala lista)
 {
     return lista == NULL || lista->dimensione == 0 || lista->array == NULL;
 }
 
+// Funzione per aggiungere una sala alla lista
 void aggiungi_sala_lista(listaSala lista, sala s)
 {
+    // Se la lista ha raggiunto la capacità massima, aumenta la capacità
     if (lista->capacita == lista->dimensione)
     {
         aumenta_capacita_lista_sala(lista);
     }
+    // Aggiunge la sala alla fine della lista
     lista->array[lista->dimensione] = s;
     lista->dimensione += 1;
 }
