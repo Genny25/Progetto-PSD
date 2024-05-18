@@ -5,10 +5,11 @@
 #include <string.h>
 #include "sala.h"
 
+// Definizione della struttura StrucSala che rappresenta una sala
 struct StructSala
 {
-    int id;
-    char *nome;
+    int id;      // ID della sala
+    char *nome;  // Nome della sala
 };
 
 sala nuova_sala(char *nome, int id)
