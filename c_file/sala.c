@@ -28,7 +28,7 @@ sala nuova_sala(char *nome, int id)
 // Funzione per confrontare due sale
 bool eq_sale(sala s1, sala s2)
 {
-    // Sei i puntatori sono uguali, le sale sono uguali
+    // Se i puntatori sono uguali, le sale sono uguali
     if (s1 == s2)
     {
         return true;
@@ -98,7 +98,7 @@ sala leggi_sala_da_file(FILE *file)
         return NULL; // Se il file è NULL, restituisce NULL
     }
 
-    // L'egge l'ID della sala dal file
+    // Legge l'ID della sala dal file
     int id;
     if (fscanf(file, "%d", &id) != 1)
     {
