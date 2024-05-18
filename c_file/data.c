@@ -4,6 +4,7 @@
 #include <string.h>
 #include "data.h"
 
+// Definizione della struttura DateTime che rappresenta una data e un'ora
 struct DateTime
 {
     int year;
@@ -13,62 +14,74 @@ struct DateTime
     int minutes;
 };
 
+// Funzione per creare una nuova data con i valori forniti
 Date nuova_data(int year, int month, int day, int hour, int minutes)
 {
+    // Alloca memoria per una nuova struttura DateTime
     Date date = malloc(sizeof(struct DateTime));
     if (date == NULL)
     {
+        // Se l'allocazione fallisce, stampa un messaggio di errore e restituisce NULL
         perror("Allocazione oggetto 'Date' fallita.");
         return NULL;
     }
+    // Inizializza i campi della struttura con i valori forniti
     date->minutes = minutes;
     date->hour = hour;
     date->day = day;
     date->month = month;
     date->year = year;
 
+    // Controlla se la data è valida
     if (!controllo_data(date))
     {
+        // Se la data non è valida, stampa un messaggio, libera la memoria e restituisce NULL
         printf("Tentativo di creazione date non valida\n");
         free(date);
         return NULL;
     }
+    // Restituisce la nuova data creata 
     return date;
 }
 
+/7 Funzione per controllare se una data è valida
 int controllo_data(Date date)
 {
     if (date == NULL)
     {
+        // Se il puntatore alla data è NULL, stampa  un errore e restituisce -1
         printf("Errore");
         return -1;
     }
-    // Validate year, month, and day
+    // Controlla la validità del mese e del giorno
     if (date->month < 1 || date->month > 12 || date->day < 1 || date->day > 31)
         return 0;
 
-    // Validate month-day combination
+    // Controlla la combinazione mese-giorno
     if ((date->month == 4 || date->month == 6 || date->month == 9 || date->month == 11) && date->day > 30)
         return 0;
 
     if (date->month == 2)
     {
+        // Controlla se l'anno è bisestile
         if ((date->year % 4 == 0 && date->year % 100 != 0) || (date->year % 400 == 0))
-        { // Leap year
+        {
+            // Anno bisestile, febbraio ha al massimo 29 giorni
             if (date->day > 29)
                 return 0;
         }
         else
         {
+            // Non bisestile, febbraio ha al massimo 28 giorni
             if (date->day > 28)
                 return 0;
         }
     }
 
-    // Validate hour, minute, and second
+    // Controlla la validità dell'ora e dei minuti
     if (date->hour < 0 || date->hour > 23 || date->minutes < 0 || date->minutes > 59)
         return 0;
-
+    // Se tutte le verifiche sono passate, la data è valida
     return 1;
 }
 
