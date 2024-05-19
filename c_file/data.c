@@ -169,7 +169,7 @@ void free_date(Date date)
     free(date);
 }
 
-/7 Funzione per salvare una data su file
+// Funzione per salvare una data su file
 void salva_data_su_file(Date data, FILE *file)
 {
     if (data == NULL)
@@ -193,7 +193,7 @@ Date leggi_data_da_file(FILE *file)
 {
     if (file == NULL)
     {
-        perror("Errore"); /7 Se il file è NULL, stampa un errore
+        perror("Errore"); // Se il file è NULL, stampa un errore
         return NULL;
     }
 
