@@ -185,14 +185,26 @@ int equal_id(event evento1, event evento2)
 
 event input_evento(int id_evento)
 {
-    char nome[101];
+    char nome[101] = {0};
     int tipo;
 
-    printf("Inserisci nome evento [Max 100 caratteri]:> ");
-    if (leggi_input(nome, 101))
-    {
-        return NULL;
+    // Chiede all'utente di inserire il nome dell'evento
+    while(1){
+        char temp[101] = {0};    // Buffer per memorizzare l'input
+        printf("Inserisci nome evento [Max 100 caratteri]: ");
+        if (leggi_input(temp, 101)) // Legge l'input dall'utente
+        {
+            printf("Nome troppo lungo");
+            continue; //riprova se il nome è troppo lungo
+        }
+        sscanf(temp,"%[^\n]",nome); //copia l'input in nome escludendo '\n'
+        if(strlen(nome) == 0) //controlla se l'input è vuoto
+        {
+            continue; //riprova se l'input è vuoto
+        }
+        break; //esce dal ciclo se l'input è valido
     }
+    
     do
     {
         printf("\nTipologie Evento\n");
