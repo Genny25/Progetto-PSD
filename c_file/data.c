@@ -53,8 +53,8 @@ int controllo_data(Date date)
         printf("Errore");
         return -1;
     }
-    // Controlla la validità del mese e del giorno
-    if (date->month < 1 || date->month > 12 || date->day < 1 || date->day > 31)
+    // Controlla la validità del mese, del giorno e che l'anno non sia negativo o minore dell'anno attuale (2024)
+    if (date->month < 1 || date->month > 12 || date->day < 1 || date->day > 31 || date->year < 0 || date->year < 2024)
         return 0;
 
     // Controlla la combinazione mese-giorno
