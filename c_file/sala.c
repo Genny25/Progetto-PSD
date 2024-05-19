@@ -40,13 +40,24 @@ bool eq_sale(sala s1, sala s2)
 // Funzione per inserire i dati di una sala dall'input dell'utente
 sala input_sala(int id)
 {
+    char nome[101] = {0};
     // Chiede all'utente di inserire il nome della sala
-    printf("Inserisci nome sala [Max 100 caratteri]: ");
-    char nome[102] = {0}; // Buffer per memorizzare l'input
-    if (leggi_input(nome, 102)) // Legge l'input dall'utente
-    {
-        return NULL; // Restituisce NULL se la lettura fallisce
+    while(1){
+        char temp[101] = {0};    // Buffer per memorizzare l'input
+        printf("Inserisci nome sala [Max 100 caratteri]: ");
+        if (leggi_input(temp, 101)) // Legge l'input dall'utente
+        {
+            printf("Nome troppo lungo");
+            continue; //riprova se il nome è troppo lungo
+        }
+        sscanf(temp,"%[^\n]",nome); //copia l'input in nome escludendo '\n'
+        if(strlen(nome) == 0) //controlla se l'input è vuoto
+        {
+            continue; //riprova se l'input è vuoto
+        }
+        break; //esce dal ciclo se l'input è valido
     }
+    
     // Crea una nuova sala con il nome inserito e l'ID fornito
     sala s = nuova_sala(nome, id);
     return s;
