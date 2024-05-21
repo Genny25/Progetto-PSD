@@ -61,7 +61,7 @@ sala sala_fine_lista(listaSala lista)
 {
     if (lista_sala_vuota(lista))
     {
-        return NULL;
+        return NULL; // Se la lista di sale è vuota restituisce NULL
     }
     // Riduce la dimensione della lista e restituisce l'ultima sala
     lista->dimensione -= 1;
@@ -88,7 +88,7 @@ int get_posizione_sala_lista(listaSala lista, sala da_cercare)
     {
         if (eq_sale(lista->array[i], da_cercare))
         {
-            return i;
+            return i; // Restituisce la posizione della sala specificata
         }
     }
     return -1; // Restituisce -1 se la sala non é stata trovata
@@ -157,7 +157,7 @@ listaSala leggi_lista_sala_da_file(FILE *file)
     if (file == NULL)
     {
         perror("Puntatore al file è NULL");
-        return NULL;
+        return NULL; // restituisce NULL se il puntatore al file è NULL
     }
 
     int numero_sale = 0;
@@ -166,7 +166,7 @@ listaSala leggi_lista_sala_da_file(FILE *file)
     if (fscanf(file, "%d", &numero_sale) != 1)
     {
         pulisci_buffer(file); // Pulisce il buffer del file se la lettura fallisce
-        return NULL;
+        return NULL; // Restituisce NULL se la lettura fallisce
     }
 
     listaSala lista = nuova_lista_sala();
