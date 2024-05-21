@@ -56,28 +56,34 @@ void aggiungi_sala_lista(listaSala lista, sala s)
     lista->dimensione += 1;
 }
 
+// Funzione per ottenere l'ultima sala della lista
 sala sala_fine_lista(listaSala lista)
 {
     if (lista_sala_vuota(lista))
     {
         return NULL;
     }
+    // Riduce la dimensione della lista e restituisce l'ultima sala
     lista->dimensione -= 1;
     return lista->array[lista->dimensione];
 }
 
+// Funzione per ottenere la prima sala nella lista
 sala get_prima_sala_lista(listaSala lista)
 {
     return sala_in_posizione_lista(lista, 0);
 }
 
+// Funzione per ottenere la dimensione della lista di sale
 int get_dimensione_lista_sala(listaSala lista)
 {
     return lista->dimensione;
 }
 
+// Funzione per ottenere la posizione di una sala specifica nella lista 
 int get_posizione_sala_lista(listaSala lista, sala da_cercare)
 {
+    // Cerca la sala nella lista confrontando gli ID
     for (int i = 0; i < lista->dimensione; i++)
     {
         if (eq_sale(lista->array[i], da_cercare))
@@ -85,15 +91,18 @@ int get_posizione_sala_lista(listaSala lista, sala da_cercare)
             return i;
         }
     }
-    return -1;
+    return -1; // Restituisce -1 se la sala non é stata trovata
 }
 
+// Funzione per ottenere una sala in una posizione specifica nella lista
 sala sala_in_posizione_lista(listaSala lista, int posizione)
 {
+    // Verifica se la posizione è valida
     if (posizione >= lista->dimensione || posizione < 0)
     {
         return NULL;
     }
+    // Restituisce la sala alla posizione specificata
     return lista->array[posizione];
 }
 
