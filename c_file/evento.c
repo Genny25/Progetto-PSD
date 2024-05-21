@@ -5,114 +5,129 @@
 #include <string.h>
 #include "evento.h"
 
+// Definizione della struttura myEvent che rappresenta un evento
 typedef struct myEvent
 {
-    int id;
-    char *nome;
-    int tipo;
-    Date inizio;
-    Date fine;
-    int sala_id;
+    int id;       // Identificativo dell'evento
+    char *nome;   // Nome dell'evento
+    int tipo;     // Tipo dell'evento ( Workshop, Sessione di keynote, Panel di discussione)
+    Date inizio;  // Data di inizio dell'evento
+    Date fine;    // Data di fine dell'evento
+    int sala_id;  // Identificativo della sala dove si tiene l'evento
 } myEvent;
 
+// Funzione per creare un nuovo evento
 event crea_evento(char *nome, int tipo, Date inizio, Date fine, int id)
 {
+    // Alloca memoria per la struttura myEvent
     myEvent *evento = malloc(sizeof(myEvent));
     if (evento == NULL)
     {
+        // Se l'allocazione fallisce, stampa un errore e ritorna NULL
         perror("Allocazione fallita.");
         return NULL;
     }
+    // Inizializza i campi della struttura
     evento->id = id;
     evento->inizio = inizio;
     evento->fine = fine;
     evento->sala_id = 0;
-    evento->nome = strdup(nome);
+    evento->nome = strdup(nome);  // Copia il nome passato come argomento
 
+    // Controlla se la copia del nome è riuscita
     if (evento->nome == NULL)
     {
         perror("Allocazione fallita.");
-        free_date(evento->inizio);
-        free_date(evento->fine);
-        free(evento);
+        free_date(evento->inizio);  // Libera la memoria allocata per la data di inizio
+        free_date(evento->fine);    // Libera la memoria allocata per la data di fine
+        free(evento);               // Libera la memoria allocata per l'evento
         return NULL;
     }
     evento->tipo = tipo;
 
-    return evento;
+    return evento;  // Ritorna il puntatore all'evento creato
 }
 
+// Funzione per ottenere l'ID di un evento
 int get_id(event evento)
 {
     if (evento == NULL)
     {
-        return -1;
+        return -1;  // Ritorna -1 se l'evento è NULL
     }
-    return evento->id;
+    return evento->id;  // Ritorna l'ID dell'evento
 }
 
+// Funzione per ottenere il nome di un evento
 char *get_nome(event evento)
 {
     if (evento == NULL)
     {
-        return NULL;
+        return NULL;  //Ritorna NULL se l'evento è NULL
     }
-    return strdup(evento->nome);
+    return strdup(evento->nome); // Ritorna una copia del nome dell'evento
 }
 
+// Funzione per ottenere l'ID della sala di un evento
 int get_evento_sala_id(event evento)
 {
     if (evento == NULL)
     {
-        return 0;
+        return 0; // Ritorna 0 se l'evento è NULL
     }
-    return evento->sala_id;
+    return evento->sala_id; // Ritorna l'ID della sala dell'evento
 }
 
+// Funzione per ottenere il tipo di un evento
 int get_tipo(event evento)
 {
     if (evento == NULL)
     {
-        return -1;
+        return -1;  // Ritorna -1 se l'evento è NULL
     }
-    return evento->tipo;
+    return evento->tipo;  // Ritorna il tipo dell'evento
 }
 
+// Funzione per ottenere la data di inizio di un evento
 Date get_data_inizio(event evento)
 {
     if (evento == NULL)
     {
-        return NULL;
+        return NULL; // Ritorna NULL se l'evento è NULL
     }
-    return evento->inizio;
+    return evento->inizio; // Ritorna la data di inizio dell'evento
 }
 
+// Funzione per impostare la data di inizio di un evento
 int set_data_inizio(event evento, Date inizio)
 {
     if (evento == NULL)
     {
-        printf("Passato puntatore NULL alla funzione 'set_event_start_date'.");
-        return -1;
+        printf("Passato puntatore NULL alla funzione 'set_event_start_date'."); // Perchè non scrivere al posto di ser_event_start_date set_data_inizio
+        return -1; // Ritorna -1 se l'evento è NULL
     }
 
+    // Controlla se la nuova data di inizio è successiva alla data di fine
     if (confronta_date(inizio, evento->fine) > 0)
     {
         printf("Data inizio superiore alla data di fine in 'set_event_start_date'.");
-        return -2;
+        return -2;  // Ritorna -2 se la data di inizio è successiva alla data di fine
     }
 
+    // Libera la memoria della vecchia data di inizio e assegna la nuova
     free_date(evento->inizio);
     evento->inizio = inizio;
-    return 0;
+    return 0;  // Ritorna 0 se l'operazione è riuscita
 }
 
+// Funzione per ottenere la data di fine di un evento
 Date get_data_fine(event evento)
 {
     if (evento == NULL)
     {
-        return NULL;
+        return NULL; // Ritorna NULL se l'evento è NULL
     }
-    return evento->fine;
+    return evento->fine; // Ritorna la data di fine dell'evento
 }
 
 int set_data_fine(event evento, Date fine)
