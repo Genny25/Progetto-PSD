@@ -106,6 +106,7 @@ sala sala_in_posizione_lista(listaSala lista, int posizione)
     return lista->array[posizione];
 }
 
+// Funzione per stampare tutte le sale nella lista
 void stampa_lista_sala(listaSala lista)
 {
     for (int i = 0; i < lista->dimensione; i++)
@@ -114,20 +115,24 @@ void stampa_lista_sala(listaSala lista)
                "Nome: ",
                i + 1);
         stampa_sala(lista->array[i]);
-        puts("");
+        puts(""); // Aggiunge una nuova riga 
     }
 }
 
+// Funzione per liberare la memoria allocata per la lista di sale
 void free_lista_sala(listaSala lista)
 {
+    // Libera la memoria allocata per ogni sala nella lista
     for (int i = 0; i < lista->dimensione; i++)
     {
         free_sala(lista->array[i]);
     }
+    // Libera la memoria allocata per l'array di sale e la struttura listaSala
     free(lista->array);
     free(lista);
 }
 
+// Funzione per salvare la lista di sale su un file
 void salva_lista_sala_su_file(listaSala lista, FILE *file)
 {
     if (file == NULL)
@@ -136,14 +141,17 @@ void salva_lista_sala_su_file(listaSala lista, FILE *file)
         return;
     }
 
+    // Scrive la dimensione della lista nel file
     fprintf(file, "%d\n", lista->dimensione);
 
+    // Salva ogni sala nella lista sul file
     for (int i = 0; i < lista->dimensione; i++)
     {
         salva_sala_su_file(lista->array[i], file);
     }
 }
 
+// Funzione per leggere una lista di sale da un file
 listaSala leggi_lista_sala_da_file(FILE *file)
 {
     if (file == NULL)
@@ -154,9 +162,10 @@ listaSala leggi_lista_sala_da_file(FILE *file)
 
     int numero_sale = 0;
 
+    // Legge il numero di sale nel file
     if (fscanf(file, "%d", &numero_sale) != 1)
     {
-        pulisci_buffer(file);
+        pulisci_buffer(file); // Pulisce il buffer del file se la lettura fallisce
         return NULL;
     }
 
@@ -166,6 +175,7 @@ listaSala leggi_lista_sala_da_file(FILE *file)
         return NULL;
     }
 
+    // Legge ogni sala dal file e la aggiunge alla lista
     for (int i = 0; i < numero_sale; i++)
     {
         sala s = leggi_sala_da_file(file);
@@ -180,12 +190,15 @@ listaSala leggi_lista_sala_da_file(FILE *file)
     return lista;
 }
 
+// Funzione per ottenere una sala dalla lista per ID
 sala sala_per_id_lista(listaSala lista, int id_sala)
 {
     if (lista == NULL)
     {
         return NULL;
     }
+
+    // Cerca la sala nella lista confrontando gli ID
     for (int i = 0; i < lista->dimensione; i++)
     {
         sala sala_corrente = lista->array[i];
@@ -194,5 +207,5 @@ sala sala_per_id_lista(listaSala lista, int id_sala)
             return sala_corrente;
         }
     }
-    return NULL;
+    return NULL; // Restituisce NULL se la sala non è trovata
 }
