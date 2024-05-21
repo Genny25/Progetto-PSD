@@ -97,8 +97,8 @@ void salva_sala_su_file(sala s, FILE *file)
     }
 
     // Scrive l'ID e il nome della sala nel file
-    fprintf(file, "%d\n", s->id);   // Write room ID
-    fprintf(file, "%s\n", s->nome); // Write room name
+    fprintf(file, "%d\n", s->id);   
+    fprintf(file, "%s\n", s->nome); 
 }
 
 // Funzione per leggere una struttura sala da un file
