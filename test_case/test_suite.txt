@@ -1,4 +1,0 @@
-TC1_add 1
-TC2_add 1
-TC3_add 1
-TC4_add 1

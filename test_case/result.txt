@@ -1,4 +1,0 @@
-TC1_add PASS 
-TC2_add PASS 
-TC3_add PASS 
-TC4_add PASS 
