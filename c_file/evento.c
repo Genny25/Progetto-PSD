@@ -152,33 +152,36 @@ int set_data_fine(event evento, Date fine)
     return 0; // Ritorna 0 se l'operazione è riuscita
 }
 
+// Funzione per impostare il nome di un evento
 int set_nome(event evento, char *nome)
 {
     if (evento == NULL)
     {
         printf("Passato puntatore NULL alla funzione 'set_name'.");
-        return -1;
+        return -1; // Ritorna -1 se l'evento è NULL
     }
     char *temp = strdup(nome);
     if (temp == NULL)
     {
         printf("Copia di 'name' in 'set_name' fallita.");
-        return -1;
+        return -1; // Ritorna -1 se la copia del nome fallisce
     }
+    // Libera la memoria del vecchio nome e assegna il nuovo
     free(evento->nome);
     evento->nome = temp;
-    return 0;
+    return 0; // Ritorna 0 se l'operazione è riuscita
 }
 
+// Funzione per impostare il tipo di un evento
 int set_tipo(event evento, int tipo)
 {
     if (evento == NULL)
     {
         printf("Passato puntatore NULL alla funzione 'set_event_type'.");
-        return -1;
+        return -1; // Ritorna -1 se l'evento è NULL
     }
-    evento->tipo = tipo;
-    return 0;
+    evento->tipo = tipo; // Assegna il nuovo tipo all'evento
+    return 0; // Ritorna 0 se l'operazione è riuscita
 }
 
 int set_evento_sala_id(event evento, int id_sala)
