@@ -1,0 +1,26 @@
+main.exe: utile.o data.o evento.o bst_evento.o conferenza.o main.o
+gcc -I./header_files utile.o data.o sala.o lista_sala.o evento.o bst_evento.o conferenza.o main.o -o main.exe
+
+utile.o: utile.c utile.h
+gcc -c -I./header_files  utile.c
+
+data.o: data.c data.h utile.h
+gcc -c -I./header_files  data.c
+
+sala.o: sala.c sala.h utile.h
+gcc -c -I./header_files  sala.c
+
+lista_sala.o: lista_sala.c lista_sala.h sala.h utile.h
+gcc -c -I./header_files  lista_sala.c
+
+evento.o: evento.c evento.h utile.h data.h sala.h
+gcc -c -I./header_files  evento.c
+
+bst_evento.o: bst_evento.c evento.h lista_sala.h
+gcc -c -I./header_files  bst_evento.c
+
+conferenza.o: conferenza.c conferenza.h utile.h bst_evento.h
+gcc -c -I./header_files  conferenza.c
+
+main.o: main.c conferenza.h
+gcc -c -I./header_files  main.c
