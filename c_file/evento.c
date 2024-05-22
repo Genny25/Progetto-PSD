@@ -130,23 +130,26 @@ Date get_data_fine(event evento)
     return evento->fine; // Ritorna la data di fine dell'evento
 }
 
+// Funzione per impostare la data di fine di un evento
 int set_data_fine(event evento, Date fine)
 {
     if (evento == NULL)
     {
         printf("Passato puntatore NULL alla funzione 'set_event_start_date'.");
-        return -1;
+        return -1; // Ritorna -1 se l'evento è NULL
     }
 
+    // Controlla se la data di fine è precedente alla data di inizio
     if (confronta_date(fine, evento->inizio) < 0)
     {
         printf("Data inizio superiore alla data di fine in 'set_event_start_date'.");
-        return -2;
+        return -2; // Ritorna -2 se la data di fine è precedente alla data di inizio
     }
 
+    // Libera la memoria della vecchia data di fine e assegna la nuova
     free_date(evento->fine);
     evento->fine = fine;
-    return 0;
+    return 0; // Ritorna 0 se l'operazione è riuscita
 }
 
 int set_nome(event evento, char *nome)
