@@ -5,17 +5,19 @@
 
 #include "conferenza.h"
 
+// Struttura per rappresentare una conferenza
 struct ConferenzaStruct
 {
-    eventoBst bst;
-    int id_evento;
-    int id_sala;
-    ListaSala sale;
+    eventoBst bst;      // Albero binario di ricerca degli eventi
+    int id_evento;      // Contatore per gli ID degli eventi
+    int id_sala;        // Contatore per gli ID delle sale
+    ListaSala sale;     // Lista delle sale disponibili
 };
 
+// Funzione per creare una nuova conferenza
 Conferenza nuova_conferenza()
 {
-    eventoBst bst = nuovo_evento_bst();
+    eventoBst bst = nuovo_evento_bst(); // Crea un nuovo albero per gli eventi
     if (bst == NULL)
     {
         return NULL;
