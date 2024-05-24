@@ -309,8 +309,8 @@ void salva_conferenza_su_file(Conferenza conf, FILE *file)
 {
     if (conf == NULL || file == NULL)
     {
-        perror("Invalid conference or file pointer");
-        return; // Esce se la conferenza o il file sono invalidi
+        perror("Puntatore alla conferenza o al file non valido");
+        return; // Esce se la conferenza o il file non sono validi
     }
 
     // Salva i contatori degli ID degli eventi e delle sale
@@ -328,8 +328,8 @@ Conferenza leggi_conferenza_da_file(FILE *file)
 {
     if (file == NULL)
     {
-        perror("Invalid file pointer");
-        return NULL; // Esce se il file è invalido
+        perror("Puntatore al file non valido");
+        return NULL; // Esce se il file non è valido
     }
 
     // Legge i contatori degli ID degli eventi e delle sale
@@ -337,7 +337,7 @@ Conferenza leggi_conferenza_da_file(FILE *file)
     int sala_id = 0;
     if (fscanf(file, "%d %d", &evento_id, &sala_id) != 2)
     {
-        perror("Error reading event ID counter and room ID counter");
+        perror("Errore nella lettura del contatore ID evento e del contatore ID sala");
         return NULL; // Esce se si verifica un errore nella lettura degli ID
     }
     pulisci_buffer(file);
@@ -346,7 +346,7 @@ Conferenza leggi_conferenza_da_file(FILE *file)
     Conferenza conf = nuova_conferenza();
     if (conf == NULL)
     {
-        perror("Error creating new conference");
+        perror("Errore nella creazione di una nuova conferenza");
         return NULL; // Esce se si verifica un errore nella creazione della conferenza
     }
 
@@ -357,7 +357,7 @@ Conferenza leggi_conferenza_da_file(FILE *file)
     conf->bst = leggi_evento_bst_da_file(file);
     if (conf->bst == NULL)
     {
-        perror("Error reading events");
+        perror("Errore nella lettura degli eventi");
         libera_conferenza(conf);
         return NULL; // Esce se si verifica un errore nella lettura degli eventi
     }
@@ -366,7 +366,7 @@ Conferenza leggi_conferenza_da_file(FILE *file)
     conf->sale = leggi_lista_sala_da_file(file);
     if (conf->sale == NULL)
     {
-        perror("Error reading rooms");
+        perror("Errore nella lettura delle sale");
         libera_conferenza(conf);
         return NULL; // Esce se si verifica un errore nella lettura delle sale
     }
