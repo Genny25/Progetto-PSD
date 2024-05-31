@@ -1,0 +1,24 @@
+
+ID evento:> 0
+Nome evento:> Evento 1
+Tipologia evento:> Workshop
+Data inizio:> 31/5/2024, 15:00
+Data fine:> 31/5/2024, 17:00
+Sala:> Sala 1
+
+
+ID evento:> 1
+Nome evento:> Evento 2
+Tipologia evento:> Sessione di keynote
+Data inizio:> 1/6/2024, 13:45
+Data fine:> 1/6/2024, 14:00
+Sala:> Sala 3
+
+
+ID evento:> 2
+Nome evento:> Evento 3
+Tipologia evento:> Panel di discussione
+Data inizio:> 25/6/2025, 18:00
+Data fine:> 25/6/2025, 19:00
+Sala:> Sala 2
+

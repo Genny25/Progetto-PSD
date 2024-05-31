@@ -1,0 +1,23 @@
+
+ID evento:> 2
+Nome evento:> Evento test 2
+Tipologia evento:> Workshop
+Data inizio:> 1/1/1970, 12:00
+Data fine:> 1/1/1970, 13:00
+
+
+
+ID evento:> 3
+Nome evento:> Evento test 3
+Tipologia evento:> Sessione di keynote
+Data inizio:> 1/1/2000, 12:00
+Data fine:> 1/1/2000, 13:00
+
+
+
+ID evento:> 1
+Nome evento:> Evento test 1
+Tipologia evento:> Data inizio:> 1/1/2010, 12:00
+Data fine:> 1/1/2011, 13:00
+
+
