@@ -1,6 +1,0 @@
-TC1_add 1
-TC2_add 1
-TC3_add 1
-TC1_modify 3
-TC1_remove 2
-TC1_show 4
